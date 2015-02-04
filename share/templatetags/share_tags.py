@@ -29,6 +29,6 @@ def share(parser, token):
     providers = SHARE_PROVIDERS
   else:
     args.pop(0)
-    providers = args
+    providers = {'main': args }
 
   return ShareNode(providers)
