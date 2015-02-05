@@ -33,7 +33,7 @@ $(function() {
       // Twitter
       if(opts.provider == "twitter") {
         $(this).replaceWith('<a class="share-twitter-button button" href="https://twitter.com/share?url='+ url +'" target="_blank"></a><div class="share-twitter-count count">0</div>');
-        $.getJSON('http://urls.api.twitter.com/1/urls/count.json?url='+url+'&callback=?', function(data) {  
+        $.getJSON('http://api.twitter.com/1.1/urls/count.json?url='+url+'&callback=?', function(data) {
           $('.share-link-twitter .count').text(data.count);
         });  
       }
@@ -51,6 +51,14 @@ $(function() {
         $(this).replaceWith('<a class="share-pinterest-button button" href="http://pinterest.com/pin/create/button/?url='+ url +'" target="_blank"></a><div class="share-pinterest-count count">0</div>');
         $.getJSON('http://api.pinterest.com/v1/urls/count.json?callback=receiveCount&url=' + url, function(data) {  
             $('.share-pinterest-count').text(data.shares);
+        });
+      }
+
+      // Linkedin
+      if(opts.provider == "linkedin") {
+        $(this).replaceWith('<a class="share-linkedin-button button" href="http://www.linkedin.com/shareArticle?mini=true&url='+ url +'" target="_blank"></a><div class="share-linkedin-count count">0</div>');
+        $.getJSON('http://www.linkedin.com/countserv/count/share?url='+url+'&callback=?&format=jsonp', function(data) {
+            $('.share-linkedin-count').text(data.count);
         });
       }
 
